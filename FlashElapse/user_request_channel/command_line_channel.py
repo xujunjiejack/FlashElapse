@@ -61,13 +61,10 @@ class CommandLineChannel(Channel):
 				encoded_data = encode_data(data_dict)
 
 				callback_with_data(encoded_data)
-			except ValueError as e:
-
-				print ("Input invalid, please try again")
-
-			except CommandLineInputNotSupport as e:
-				print ("Please choose another command")
-
+			
+			except Exception as e:
+                                print (e)
+                                print ("Input invalid, please try again")
 		pass
 
 def unitTest():

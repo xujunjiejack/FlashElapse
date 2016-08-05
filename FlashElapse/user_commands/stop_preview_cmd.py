@@ -20,8 +20,8 @@ class StopPreviewExeCmd(ExecutableCommand):
 
 	def __init__(self):
 		super(StopPreviewExeCmd, self).__init__()
-		#from FlashElapse.__init__ import camera, picamera
-		#self.camera = camera 
+		from __init__ import camera, picamera
+		self.camera = camera 
 
 	def _exe_(self):
 		'''The actual execute code for doing command. Every exception it throws will
@@ -29,6 +29,7 @@ class StopPreviewExeCmd(ExecutableCommand):
 		been delegated to the execute(). Outsider should not use this method for run
 		Developer needs to inheritance this method for the command to run
 		'''
+		self.camera.stop_preview()
 		print ("Stop Preview")
 			
 class StopPreviewCMDLChannel(CommandCMDLInput):

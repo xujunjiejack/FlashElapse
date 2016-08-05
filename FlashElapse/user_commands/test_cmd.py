@@ -30,5 +30,5 @@ class TestCMDLChannel(CommandCMDLInput):
 	def get_prompt_line(self):
 		return "Test the system"
 
-	def _require_new_argument_(self):
+	def _require_extra_argument_(self):
 		return False
