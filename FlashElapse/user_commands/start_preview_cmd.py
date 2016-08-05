@@ -17,8 +17,9 @@ class StartPreviewCmd(Command):
 
 class StartPreviewExeCmd(ExecutableCommand):
 
-        def __init__(self):
+        def __init__(self, data_dict = None):
                 super(StartPreviewExeCmd, self).__init__()
+                self.data_dict = data_dict
                 from __init__ import picamera,camera
                 self.camera = camera
 

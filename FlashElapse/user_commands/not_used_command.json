@@ -1,0 +1,17 @@
+"StartPreviewCmd":	{
+		"Module":"start_preview_cmd",
+		"Position":0,
+		"CMDLInput":{
+			"StartPreviewCMDLChannel":
+			{"Module":"start_preview_cmd"}
+		}
+	},
+
+"StopPreviewCmd":{
+		"Module":"stop_preview_cmd",
+		"Position": 1,
+		"CMDLInput":{
+			"StopPreviewCMDLChannel":
+			{"Module": "stop_preview_cmd"}
+		}
+	},

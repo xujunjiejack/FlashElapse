@@ -16,6 +16,9 @@ class ExecutableCommand(object):
 	hardware. It will require some hardware dependency. The data inside should be populated by the 
 	decode method in the corresponding command object'''
 
+	def __init__(self, data_dict = None):
+		self.data_dict = data_dict
+
 	def execute(self):
 		''' The only api for rpb_controller to use'''
 		try:

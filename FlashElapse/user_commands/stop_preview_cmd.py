@@ -18,8 +18,9 @@ class StopPreviewCmd(Command):
 
 class StopPreviewExeCmd(ExecutableCommand):
 
-	def __init__(self):
+	def __init__(self, data_dict = None):
 		super(StopPreviewExeCmd, self).__init__()
+		self.data_dict = data_dict
 		from __init__ import camera, picamera
 		self.camera = camera 
 
