@@ -26,6 +26,7 @@ os.system("avconv -r 10  -i /home/pi/Desktop/timelapse/myimage_%04d.jpg -r 10 -v
 
 
 
+
 camera = PiCamera()
 
 camera.resolution = (3240,2464)

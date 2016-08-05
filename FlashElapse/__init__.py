@@ -1,10 +1,10 @@
-#import picamera
+import picamera
 import os
 import sys
 
 print ("***The FlashElapse is initializing!***")
 
-# check whether the camera is connected, if no, quit the program
+#check whether the camera is connected, if no, quit the program
 
 def set_up_camera_or_exit():
 	try:
@@ -23,7 +23,7 @@ def ask_project_name():
 		sys.exit(2)
 	return project_name
 
-#camera = set_up_camera_or_exit()
+camera = set_up_camera_or_exit()
 project_name = ask_project_name()
 # it has connection with the camera, then start the main. In the main, it will create the control object, MainController
 
