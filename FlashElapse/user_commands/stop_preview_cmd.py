@@ -1,24 +1,25 @@
 from command_api import Command, ExecutableCommand, CommandCMDLInput
 
-class StartPreviewCmd(Command):
+class StopPreviewCmd(Command):
 
 	def __init__(self):
-		super(StartPreviewCmd,self).__init__()
+		super(StopPreviewCmd,self).__init__()
 		
 	def _set_cmd_name_(self):
-		return "Start preview";
-
-	def _set_cmdl_channel_class_(self):
-		return StartPreviewCMDLChannel
+		return "Stop preview";
 
 	def decode(self,data_dict):
-		return StartPreviewExeCmd()
+		return StopPreviewExeCmd()
+
+	def _set_cmdl_channel_class_ (self):
+		
+		return StopPreviewCMDLChannel 
 
 
-class StartPreviewExeCmd(ExecutableCommand):
+class StopPreviewExeCmd(ExecutableCommand):
 
 	def __init__(self):
-		super(StartPreviewExeCmd, self).__init__()
+		super(StopPreviewExeCmd, self).__init__()
 		#from FlashElapse.__init__ import camera, picamera
 		#self.camera = camera 
 
@@ -28,18 +29,15 @@ class StartPreviewExeCmd(ExecutableCommand):
 		been delegated to the execute(). Outsider should not use this method for run
 		Developer needs to inheritance this method for the command to run
 		'''
-		print("Start Preview")
-
-
-class StartPreviewCMDLChannel(CommandCMDLInput):
+		print ("Stop Preview")
+			
+class StopPreviewCMDLChannel(CommandCMDLInput):
+	"""docstring for StopPreviewCMDLChannel"""
 	def __init__(self):
-		super(StartPreviewCMDLChannel, self).__init__()
-
+		super(StopPreviewCMDLChannel, self).__init__()
+		
 	def get_prompt_line(self):
-		return "Start the preview"
+		return "Stop the preview"
 
 	def _require_extra_argument_(self):
 		return False
-
-
-

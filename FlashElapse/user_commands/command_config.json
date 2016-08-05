@@ -1,0 +1,33 @@
+{
+	"StartPreviewCmd":	{
+		"Module":"start_preview_cmd",
+		"Position":0,
+		"CMDLInput":{
+			"StartPreviewCMDLChannel":
+			{"Module":"start_preview_cmd"}
+		}
+	},
+
+	"TestCmd":{
+		"Module":"test_cmd",
+		"Position":2,
+		"CMDLInput":{
+			"TestCMDLChannel":
+			{"Module":"test_cmd"}
+		}
+	},
+
+	"StopPreviewCmd":{
+		"Module":"stop_preview_cmd",
+		"Position": 1,
+		"CMDLInput":{
+			"StopPreviewCMDLChannel":
+			{"Module": "stop_preview_cmd"}
+		}
+	},
+	"ShutDownCommand":{
+		"Module":"shut_down_cmd",
+		"Position":3
+
+	}
+}

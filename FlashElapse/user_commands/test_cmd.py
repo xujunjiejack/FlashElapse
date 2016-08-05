@@ -1,5 +1,4 @@
-from command_api import Command,ExecutableCommand
-from cmd_header_const import TEST
+from command_api import Command,ExecutableCommand, CommandCMDLInput
 
 class TestCmd(Command):
 	"""docstring for TestCmd"""
@@ -7,11 +6,13 @@ class TestCmd(Command):
 		super(TestCmd, self).__init__()
 
 	def _set_cmd_name_(self):
-		return TEST
+		return "Test"
 
 	def decode(self,data_dict):
-
 		return TestExeCmd()
+
+	def _set_cmdl_channel_class_(self):
+		return TestCMDLChannel
 
 class TestExeCmd(ExecutableCommand):
 	"""docstring for TestExeCmd"""
@@ -20,5 +21,14 @@ class TestExeCmd(ExecutableCommand):
 		
 	def _exe_(self):
 		print ("Here is the test")
-		
+	
+class TestCMDLChannel(CommandCMDLInput):
+	
+	def __init__(self):
+		super(TestCMDLChannel,self).__init__()	
 
+	def get_prompt_line(self):
+		return "Test the system"
+
+	def _require_new_argument_(self):
+		return False
