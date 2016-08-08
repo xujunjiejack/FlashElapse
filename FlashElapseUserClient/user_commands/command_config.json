@@ -1,0 +1,22 @@
+{
+	"TakePhotoCmd":{
+		"Module":"take_photo_command",
+		"Position":0
+	},
+
+	"TestCmd":{
+		"Module":"test_cmd",
+		"Position":1,
+		"CMDLInput":{
+			"TestCMDLChannel":
+			{"Module":"test_cmd"}
+		}
+	},
+
+	
+	"ShutDownCommand":{
+		"Module":"shut_down_cmd",
+		"Position":2
+
+	}
+}

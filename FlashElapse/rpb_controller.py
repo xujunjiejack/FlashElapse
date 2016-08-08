@@ -24,7 +24,7 @@ class RpbController(object):
 		self.translator = CommandTranslator(self.cmd_manager)
 		
 		try:
-			self.user_request_receiver = UserRequestAdapter(input_source)
+			self.user_request_receiver = UserRequestAdapter(input_source, self.cmd_manager)
 		
 		except UserRequestError as e:
 			print (e.msg);
@@ -37,9 +37,20 @@ class RpbController(object):
 		self.user_request_receiver.start_listening(self.parse_data)
 		
 	def parse_data(self, data):
-		cmd = self.translator.translate(data)
-		cmd.execute()
+		try:
+			cmd = self.translator.translate(data)
+			cmd.execute()
+		except TranslationError as e:
+			print (e)
+		except ShutDownException as e:
+			print (e)
+			self.controller_exit()
 
+	def controller_exit(self):
+		'''This one tells every one the controller is going to be shut down. Save memory '''
+		print ("The controlling is quitting")
+		self.user_request_receiver.end_listening()
+		sys.exit(0)
 
 class CommandTranslator(object):
 
@@ -74,6 +85,6 @@ class TranslationError(Exception):
 	def __init__(self,*args,**kwargs):
 		Exception.__init__(self,*args,**kwargs)
 
-
+class  ShutDownException(Exception): pass
 
 
