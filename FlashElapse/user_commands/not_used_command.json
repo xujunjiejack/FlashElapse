@@ -15,3 +15,12 @@
 			{"Module": "stop_preview_cmd"}
 		}
 	},
+
+"TestCmd":{
+		"Module":"test_cmd",
+		"Position":1,
+		"CMDLInput":{
+			"TestCMDLChannel":
+			{"Module":"test_cmd"}
+		}
+	},

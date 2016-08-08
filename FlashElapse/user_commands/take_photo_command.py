@@ -2,6 +2,7 @@ from command_api import Command, ExecutableCommand, CommandCMDLInput
 from time import sleep
 from _thread import start_new_thread
 from __init__ import project_name
+from os import system
 
 class TakePhotoCmd(Command):
 
@@ -23,8 +24,8 @@ class TakePhotoExeCmd(ExecutableCommand):
 		def __init__(self, data_dict = None):
 				super(TakePhotoExeCmd, self).__init__()
 				self.data_dict = data_dict
-				#from __init__ import picamera,camera
-				#self.camera = camera
+				from __init__ import picamera,camera
+				self.camera = camera
 
 		def _exe_(self):
 				'''The actual execute code for doing command. Every exception it throws will
@@ -38,16 +39,17 @@ class TakePhotoExeCmd(ExecutableCommand):
 				
 				def take_photo(total_frame_num, time_interval, project_name):
 					i = 0
+					
+					system("mkdir -p /home/pi/Desktop/%s" %(project_name))
+
 					while i < total_frame_num:
 						sleep(time_interval)
 						print("Taking photo %s"%i)
+						self.camera.capture('/home/pi/Desktop/%s/%s.jpg' % (project_name,i))
+						
 						i += 1
-
+                                                
 				start_new_thread(take_photo,(total_frame_num,time_interval, project_name))
-				#self.camera.capture('/media/pi/%s/Mg-Fe/MG%s.jpg' % (project_name,i)) 
-
-				
-
 
 class TakePhotoCMDLChannel(CommandCMDLInput):
 	def __init__(self):

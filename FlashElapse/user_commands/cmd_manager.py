@@ -5,8 +5,8 @@ from importlib import import_module
 
 # I need to find a way that's not hard code. One way is to instantiate the command manager
 # after the whole program starts
-#config_file_path ="/home/pi/Desktop/FlashElapse/FlashElapse/user_commands/command_config.json"
-config_file_path = "/Users/xu/Desktop/Projects/FlashElapse/FlashElapse/user_commands/command_config.json"
+config_file_path ="/home/pi/Desktop/FlashElapse/FlashElapse/user_commands/command_config.json"
+#config_file_path = "/Users/xu/Desktop/Projects/FlashElapse/FlashElapse/user_commands/command_config.json"
 class  CommandManager(object):
 	"""docstring for  CommandManager"""
 	def __init__(self):
