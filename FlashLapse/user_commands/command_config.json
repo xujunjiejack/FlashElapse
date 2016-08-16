@@ -1,0 +1,40 @@
+{
+	"TakePhotoCmd":{
+		"Module":"take_photo_command",
+		"Position":0
+	},
+
+	"StartPreviewCmd":	{
+		"Module":"start_preview_cmd",
+		"Position":1,
+		"CMDLInput":{
+			"StartPreviewCMDLChannel":
+			{"Module":"start_preview_cmd"}
+		}
+	},
+
+"StopPreviewCmd":{
+		"Module":"stop_preview_cmd",
+		"Position": 2,
+		"CMDLInput":{
+			"StopPreviewCMDLChannel":
+			{"Module": "stop_preview_cmd"}
+		}
+	},
+
+	"OpenPhotoFolderCmd":{
+		"Module":"open_photo_folder",
+		"Position":3
+	},
+
+	"ShutDownCommand":{
+		"Module":"shut_down_cmd",
+		"Position":4
+
+	},
+
+	"HelpCmd":{
+		"Module": "help_command",
+		"Position": 5
+	}
+}
