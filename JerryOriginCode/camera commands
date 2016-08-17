@@ -23,16 +23,16 @@ for i in range(10):
 os.system("avconv -r 10  -i /home/pi/Desktop/timelapse/myimage_%04d.jpg -r 10 -vcodec libx264 -crf 20 -g 15 /home/pi/Desktop/timelapse/timelapse.mp4")
 
 
-
-
-
-
 camera = PiCamera()
 
 camera.resolution = (3240,2464)
 for i in range(10):
     sleep(2)
     camera.capture('/home/pi/Desktop/timelapse/myimage_%04d.jpg' % i)
+
+
+10 frame rate
+%04d number, automatically search from the lower to the higher
 
 os.system("avconv -r 10  -i /home/pi/Desktop/timelapse/myimage_%04d.jpg -r 1 -vcodec libx264 -crf 20 -g 15 /home/pi/Desktop/timelapse/timelapse.mp4")
 

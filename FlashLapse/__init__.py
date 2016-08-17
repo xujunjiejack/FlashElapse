@@ -1,7 +1,8 @@
 #import picamera
 import os
 import sys
-from user_setting import camera
+from user_setting import set_camera, get_camera
+
 
 # add the base directory to the
 dirname = os.path.dirname(__file__)
@@ -21,8 +22,8 @@ def set_up_camera_or_exit():
 			"Program quitting")
 	sys.exit(1)
 
-#global camera
-#camera = set_up_camera_or_exit()
+#set_camera(set_up_camera_or_exit())
+
 
 # it has connection with the camera, then start the main. In the main, it will create the control object, MainController
 

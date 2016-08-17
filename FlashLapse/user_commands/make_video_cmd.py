@@ -1,7 +1,10 @@
 from user_commands.command_api import Command, CommandCMDLInput,ExecutableCommand
 
 import os
-from user_setting import get_photo_path
+
+from user_request_channel.command_line_channel import UserInputError
+from user_setting import get_photo_path, get_project_name
+from utils.image_name import ImageName
 
 
 class MakeVideoCmd(Command):
@@ -17,8 +20,6 @@ class MakeVideoCmd(Command):
 
     def decode(self, data_dict, delegate = None):
         return MakeVideoExeCmd(data_dict,delegate)
-    
-    
 
 class MakeVideoCMDL(CommandCMDLInput):
 
@@ -26,24 +27,46 @@ class MakeVideoCMDL(CommandCMDLInput):
         super(MakeVideoCMDL,self).__init__()
 
     def _react_for_data_(self):
-        x = input("Please enter the frame you want")
+
+        def check_string_as_integer(string):
+            try:
+                num = int(string)
+                return num
+            except ValueError as e:
+                raise UserInputError("Please enter an integer")
+
+        def check_int_positive(num):
+            if num <= 0:
+                raise UserInputError("Frames per minute can't be negative or zero. ")
+            return num
+
+        fps = input("Please enter the frames per second you want. Recommend 30 or 60:")
+        fps = check_string_as_integer(fps)
+        fps = check_int_positive(fps)
 
         # invalidate
         # return
-        data_dict = {"frame": x}
+        data_dict = {"fps": fps}
         return data_dict
 
     def get_prompt_line(self):
-        return "Put all of the photos into video"
+        return "Put all of the photos captured into video"
 
 
 class MakeVideoExeCmd(ExecutableCommand):
     def __init__(self,data_dict=None,delegate=None):
         super(MakeVideoExeCmd, self).__init__(data_dict,delegate)
-        
-    def _exe_(self):
-        os.system(
-            "avconv -r 10  -i /home/pi/Desktop/timelapse/myimage_%04d.jpg -r 10 "
-            "-vcodec libx264 -crf 20 -g 15 /home/pi/Desktop/timelapse/timelapse.mp4")
 
-        pass
+    def _exe_(self):
+
+        # assume the fps exist
+        fps = self.data_dict["fps"]
+        image_name = ImageName()
+        image_path = image_name.get_image_name(directory_path=get_photo_path())
+        video_name = os.path.join(get_photo_path(),get_project_name()+".mp4")
+
+        make_video_command = "avconv -r %s  -i %s -r %s -vcodec libx264" \
+                             " -crf 20 -g 15 %s"%(fps, fps,image_path,video_name)
+
+        print(make_video_command)
+        #os.system(make_video_command)

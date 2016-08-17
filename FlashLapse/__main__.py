@@ -2,7 +2,7 @@ import __init__
 import sys, getopt
 from rpb_controller import RpbController
 from utils.util import open_dialog_for_path
-from user_setting import project_name
+from user_setting import project_name, set_project_name, get_project_name
 
 def ask_project_name():
     project_name = input("Please enter your project name: ")
@@ -45,9 +45,7 @@ def main(argv):
 
     #run the RpbController
     source = read_input_source_from_cmd(argv)
-
-    global project_name
-    project_name = ask_project_name()
+    set_project_name(ask_project_name())
 
     rpb_controller = RpbController(source)
     rpb_controller.run()

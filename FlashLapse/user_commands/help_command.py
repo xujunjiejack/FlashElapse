@@ -1,6 +1,4 @@
 import sys
-sys.path.insert(0,'/Users/xu/Desktop/Projects/FlashLapse/FlashLapse')
-print(sys.path)
 
 from user_commands.command_api import Command, CommandCMDLInput
 from utils.common_exceptions import PrintHelpException

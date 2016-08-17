@@ -74,7 +74,7 @@ class CommandCMDLInput(object):
 			data_dict = getattr(self.__class__,"data_dict")
 			new_data_dict = copy.deepcopy(data_dict)
 			new_data_dict.update(extra_dict)
-			print("the new_data_dict is ", new_data_dict)
+			#print("the new_data_dict is ", new_data_dict)
 			return new_data_dict,self._is_util_()
 
 		except CommandLineInputNotSupport as e:
