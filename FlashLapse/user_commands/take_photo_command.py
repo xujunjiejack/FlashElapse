@@ -59,7 +59,7 @@ class TakePhotoExeCmd(ExecutableCommand):
     def ask_photo_store_path(self):
         path = open_dialog_for_path(user_prompt="Please choose a directory to store photos"
                                     ,path_type="d")
-        if path == None:
+        if path == None or path == "" :
             raise ValueError("No directory has been choosed to store the data")
 
         return path
