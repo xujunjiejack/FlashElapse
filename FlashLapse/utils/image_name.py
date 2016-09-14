@@ -3,10 +3,10 @@ from os.path import join
 
 class ImageName(object):
 
-    def __init__(self):
-        self.prefix = "%s_image"
+    def __init__(self, prefix = "%s_image", file_type = "jpg"):
+        self.prefix = prefix
         self.number = "%04d"
-        self.file_type = ".jpg"
+        self.file_type = "."+file_type
 
     def get_name_format(self):
         return self.prefix + self.number + self.file_type
@@ -14,6 +14,9 @@ class ImageName(object):
     def instantiate_format(self,prefix, number, file_type):
 
         return prefix + number + file_type
+
+    def set_file_type(self, file_type):
+        self.file_type = file_type
 
     def get_image_name(self, project_name = "", number = -999, directory_path = "" ):
         '''If given the project name, then it will use the project name. If not,

@@ -1,23 +1,23 @@
 from user_commands.command_api import Command,ExecutableCommand,CommandCMDLInput
 from tkinter import Tk
 
-class StartPreviewCmd(Command):
+class PreviewCmd(Command):
     def __init__(self):
-        super(StartPreviewCmd,self).__init__()
+        super(PreviewCmd,self).__init__()
 
     def _set_cmd_name_(self):
-        return "Start preview"
+        return "Preview"
 
     def _set_cmdl_channel_class_(self):
-        return StartPreviewCMDLChannel
+        return PreviewCMDLChannel
 
     def decode(self,data_dict,delegate=None):
-        return StartPreviewExeCmd()
+        return PreviewExeCmd()
 
 
-class StartPreviewExeCmd(ExecutableCommand):
+class PreviewExeCmd(ExecutableCommand):
     def __init__(self,data_dict=None,delegate=None):
-        super(StartPreviewExeCmd,self).__init__(data_dict,delegate)
+        super(PreviewExeCmd,self).__init__(data_dict,delegate)
         from user_setting import get_camera
         self.camera = get_camera()
 
@@ -70,12 +70,12 @@ class StartPreviewExeCmd(ExecutableCommand):
 
         root.bind("<Escape>", lambda event: end_root(event, root))
 
-class StartPreviewCMDLChannel(CommandCMDLInput):
+class PreviewCMDLChannel(CommandCMDLInput):
     def __init__(self):
-        super(StartPreviewCMDLChannel,self).__init__()
+        super(PreviewCMDLChannel,self).__init__()
 
     def get_prompt_line(self):
-        return "Start the preview"
+        return "Preview"
 
     def _require_extra_argument_(self):
         return False

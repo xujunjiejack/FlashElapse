@@ -38,22 +38,24 @@ class TakePhotoExeCmd(ExecutableCommand):
 
         time_interval = self.data_dict['time_interval']
         time_exp = self.data_dict['time_exp']
+        file_type = self.data_dict['pic_format']
         total_frame_num = (time_exp * 60 / time_interval)
 
-        def take_photo(total_frame_num,time_interval,path,project_name):
+        def take_photo(total_frame_num,time_interval,path,project_name, file_type):
             i = 0
-            image_name = ImageName()
+            image_name = ImageName(file_type=file_type)
+
             while i < total_frame_num:
                 sleep(time_interval)
                 print("Taking photo %s / %s at %s" % (i,total_frame_num,path))
                 print(image_name.get_image_name(number=i,directory_path=get_photo_path()))
 
-                #self.camera.capture(image_name.get_image_name(number=i,directory_path=get_photo_path()))
+                self.camera.capture(image_name.get_image_name(number=i,directory_path=get_photo_path()))
                 i += 1
             print("Done with taking photo, please check the folder")
 
         start_new_thread(take_photo,(int(total_frame_num),time_interval,
-                                     photo_path,get_project_name()))
+                                     photo_path,get_project_name(), file_type))
 
     def ask_photo_store_path(self):
         path = open_dialog_for_path(user_prompt="Please choose a directory to store photos"
@@ -67,6 +69,9 @@ class TakePhotoExeCmd(ExecutableCommand):
 class TakePhotoCMDLChannel(CommandCMDLInput):
     def __init__(self):
         super(TakePhotoCMDLChannel,self).__init__()
+
+    def get_format_array(self):
+        return ["jpg", "png"]
 
     def get_prompt_line(self):
         return "Take photo"
@@ -109,11 +114,28 @@ class TakePhotoCMDLChannel(CommandCMDLInput):
                 except UserInputError as e:
                     print(e,"\nPlease try again.")
 
+        def read_format():
+            while True:
+                try:
+                    # get formats preset
+                    available_formats = self.get_format_array()
+                    format_prompt = "Please enter the number of which picture format you want\n"
+                    for id,format in enumerate(available_formats):
+                        format_prompt += "%i: %s  " %(id,format)
+                    format_index = input(format_prompt)
+                    format_index = check_string_as_integer(format_index)
+                    check_int_positive(format_index)
+                    return available_formats[format_index]
+                except UserInputError as e:
+                    print(e,"\nPlease try again.")
+
         time_interval = read_time_interval_console()  # time_interval is interger
         time_exp = read_time_of_experiment()  # time_exp is interger
+        format_postfix = read_format(); # format is a string
         print("time_interval: %s, time_exp: %s" % (time_interval,time_exp))
         data_dict['time_interval'] = time_interval
         data_dict['time_exp'] = time_exp
+        data_dict['pic_format'] = format_postfix
         return data_dict
 
 

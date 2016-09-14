@@ -9,39 +9,26 @@
 		"Position":1
 	},
 
-	"StartPreviewCmd":	{
-		"Module":"start_preview_cmd",
-		"Position":2,
-		"CMDLInput":{
-			"StartPreviewCMDLChannel":
-			{"Module":"start_preview_cmd"}
-		}
-	},
-
-	"StopPreviewCmd":{
-		"Module":"stop_preview_cmd",
-		"Position": 3,
-		"CMDLInput":{
-			"StopPreviewCMDLChannel":
-			{"Module": "stop_preview_cmd"}
-		}
+	"Preview":	{
+		"Module":"preview_cmd",
+		"Position":2
 	},
 
 	"OpenPhotoFolderCmd":{
 		"Module":"open_photo_folder",
-		"Position":4
+		"Position":3
 	},
 
 
 	"MakeVideoCmd":{
 		"Module":"make_video_cmd",
-		"Position":5
+		"Position":4
 	},
 
 
 	"ShutDownCommand":{
 		"Module":"shut_down_cmd",
-		"Position":6
+		"Position":5
 	}
 
 }
