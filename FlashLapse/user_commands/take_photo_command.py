@@ -23,10 +23,9 @@ class TakePhotoCmd(Command):
 class TakePhotoExeCmd(ExecutableCommand):
     def __init__(self,data_dict=None,delegate=None):
         super(TakePhotoExeCmd,self).__init__(data_dict,delegate)
-
-    #		from __init__ import picamera,camera
-    #		self.camera = camera
-
+        from user_setting import get_camera
+        self.camera = get_camera()
+        
     def _exe_(self):
         '''The actual execute code for doing command. Every exception it throws will
         be thrown to execute to be a command runtime error. This error handling has
@@ -60,7 +59,7 @@ class TakePhotoExeCmd(ExecutableCommand):
         path = open_dialog_for_path(user_prompt="Please choose a directory to store photos"
                                     ,path_type="d")
         if path == None or path == "" :
-            raise ValueError("No directory has been choosed to store the data")
+            raise ValueError("\nNo directory has been choosed to store the data")
 
         return path
 

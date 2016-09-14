@@ -18,8 +18,8 @@ class StartPreviewCmd(Command):
 class StartPreviewExeCmd(ExecutableCommand):
     def __init__(self,data_dict=None,delegate=None):
         super(StartPreviewExeCmd,self).__init__(data_dict,delegate)
-        #from __init__ import picamera,camera
-        #self.camera = camera
+        from user_setting import get_camera
+        self.camera = get_camera()
 
     def _exe_(self):
         '''The actual execute code for doing command. Every exception it throws will
@@ -27,7 +27,7 @@ class StartPreviewExeCmd(ExecutableCommand):
         been delegated to the execute(). Outsider should not use this method for run
         Developer needs to inheritance this method for the command to run
         '''
-        #self.camera.start_preview()
+        self.camera.start_preview()
         # TODO: let's change the scheme for the preview. That is using a Tkinter
         # to receive the non ascii key to provide good avoidance
         # One thing is that tkinter might not be available. So we need to
@@ -48,13 +48,13 @@ class StartPreviewExeCmd(ExecutableCommand):
 
     def _bind_arrow_key_(self,root):
         def flip_horizontal(event):
-            #self.camera.hflip = not self.camera.hflip
-            print("The left has been pressed")
+            self.camera.hflip = not self.camera.hflip
+            #print("The left has been pressed")
             pass
 
         def flip_vertial(event):
-            #self.camera.vflip = not self.camera.vflip
-            print("The up has been pressed")
+            self.camera.vflip = not self.camera.vflip
+            #print("The up has been pressed")
             pass
 
         root.bind("<Left>", flip_horizontal)
@@ -66,7 +66,7 @@ class StartPreviewExeCmd(ExecutableCommand):
 
         def end_root(event, root):
             root.destroy()
-            #self.camera.stop_preview()
+            self.camera.stop_preview()
 
         root.bind("<Escape>", lambda event: end_root(event, root))
 

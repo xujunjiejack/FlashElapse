@@ -8,8 +8,8 @@ sys.path.insert(0,dirname)
 
 # I need to find a way that's not hard code. One way is to instantiate the command manager
 # after the whole program starts
-# config_file_path ="/home/pi/Desktop/FlashLapse/FlashLapse/user_commands/command_config.json"
-config_file_path = "/Users/xu/Desktop/Projects/FlashLapse/FlashLapse/user_commands/command_config.json"
+config_file_path ="/home/pi/Desktop/FlashLapse/FlashLapse/user_commands/command_config.json"
+#config_file_path = "/Users/xu/Desktop/Projects/FlashLapse/FlashLapse/user_commands/command_config.json"
 
 
 class CommandManager(object):

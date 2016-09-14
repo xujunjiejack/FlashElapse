@@ -20,8 +20,8 @@ class StopPreviewExeCmd(ExecutableCommand):
 
 	def __init__(self, data_dict = None, delegate = None):
 		super(StopPreviewExeCmd, self).__init__(data_dict, delegate)
-		from __init__ import camera, picamera
-		self.camera = camera 
+		from user_setting import get_camera
+		self.camera = get_camera() 
 
 	def _exe_(self):
 		'''The actual execute code for doing command. Every exception it throws will
